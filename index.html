@@ -19,7 +19,7 @@ body{
   background:#050507;
 }
 
-/* NEW BACKGROUND IMAGE LAYER */
+/* BACKGROUND IMAGE */
 body::before{
   content:"";
   position:fixed;
@@ -43,11 +43,51 @@ body::after{
   z-index:-1;
 }
 
-body::before{top:0;left:0;}
-
 @keyframes move{
   from{transform:translate(0,0) scale(1);}
   to{transform:translate(90px,120px) scale(1.2);}
+}
+
+/* LOGIN OVERLAY */
+#loginScreen{
+  position:fixed;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:rgba(0,0,0,0.85);
+  z-index:9999;
+}
+
+.login-box{
+  width:320px;
+  padding:25px;
+  background:rgba(20,20,25,0.9);
+  border-radius:18px;
+  text-align:center;
+  border:1px solid rgba(255,255,255,0.1);
+  backdrop-filter:blur(15px);
+}
+
+.login-box input{
+  width:100%;
+  padding:12px;
+  margin-top:15px;
+  border:none;
+  border-radius:10px;
+  text-align:center;
+  outline:none;
+}
+
+.login-box button{
+  width:100%;
+  padding:12px;
+  margin-top:15px;
+  border:none;
+  border-radius:10px;
+  background:#fff;
+  font-weight:bold;
+  cursor:pointer;
 }
 
 .box{
@@ -163,6 +203,15 @@ button:hover{
 
 <body>
 
+<!-- LOGIN SCREEN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <h3>Enter Password</h3>
+    <input type="password" id="passInput" placeholder="Password">
+    <button onclick="checkPass()">Unlock</button>
+  </div>
+</div>
+
 <div class="box">
 
   <h2>Profile System</h2>
@@ -207,6 +256,15 @@ button:hover{
 
 <script>
 
+function checkPass(){
+  let pass = document.getElementById("passInput").value;
+  if(pass === "111444"){
+    document.getElementById("loginScreen").style.display = "none";
+  } else {
+    alert("Wrong password");
+  }
+}
+
 function copyText(id){
   navigator.clipboard.writeText(document.getElementById(id).innerText);
 }
@@ -235,9 +293,7 @@ async function fetchData(){
     document.getElementById("imgLink").innerText = avatar;
 
     let online = (data.online === true || data.online === "online" || data.status_online == 1);
-    let dot = document.getElementById("statusDot");
-
-    dot.className = online ? "status-dot online-dot" : "status-dot offline-dot";
+    document.getElementById("statusDot").className = online ? "status-dot online-dot" : "status-dot offline-dot";
 
   }catch(e){
     alert("Error loading data");
