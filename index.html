@@ -81,3 +81,51 @@ button{
     <div class="item"><div class="label">Name</div><div id="name" class="value"></div></div>
     <div class="item"><div class="label">ID</div><div id="id" class="value"></div></div>
     <div class="item"><div class="label">Status</div><div id="status" class="value"></div></div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const USER = "ramy";
+const PASS = "1207";
+
+function login(){
+  let u = document.getElementById('username').value.trim();
+  let p = document.getElementById('password').value.trim();
+
+  if(u === USER && p === PASS){
+    document.getElementById('login').classList.add('hidden');
+    document.getElementById('app').classList.remove('hidden');
+  } else {
+    alert('Wrong username or password');
+  }
+}
+
+async function fetchData(){
+  let user = document.getElementById('userInput').value.trim();
+  if(!user) return;
+
+  let url = `https://pythbots.com/api/xatprofile.php?u=${user}`;
+  let proxy = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`;
+
+  try{
+    let res = await fetch(proxy);
+    let data = await res.json();
+
+    document.getElementById('result').classList.remove('hidden');
+    document.getElementById('name').innerText = data.name || "N/A";
+    document.getElementById('id').innerText = data.id || "N/A";
+
+    let st = data.online ? "ONLINE" : "OFFLINE";
+    document.getElementById('status').innerText = st;
+    document.getElementById('status').className = 'value status ' + (data.online ? 'online' : 'offline');
+
+  }catch(e){
+    alert('Error loading data');
+  }
+}
+</script>
+
+</body>
+</html>
