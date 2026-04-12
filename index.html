@@ -38,7 +38,7 @@ body::after{bottom:8%;right:10%;animation-duration:20s;}
 }
 
 .box{
-  width:460px;
+  width:520px;
   background:rgba(20,20,25,0.75);
   padding:25px;
   border-radius:22px;
@@ -108,11 +108,12 @@ button:hover{
 
 .item{
   background:rgba(255,255,255,0.05);
-  padding:12px;
+  padding:14px 45px 14px 14px;
   margin:10px 0;
   border-radius:14px;
   text-align:left;
   position:relative;
+  word-break:break-word;
 }
 
 .label{
@@ -125,20 +126,22 @@ button:hover{
   font-size:14px;
   font-weight:bold;
   margin-top:4px;
-  word-break:break-all;
 }
 
 .copy-btn{
   position:absolute;
-  right:10px;
+  right:12px;
   top:50%;
   transform:translateY(-50%);
   cursor:pointer;
-  font-size:14px;
+  font-size:16px;
   opacity:0.7;
   transition:0.3s;
 }
-.copy-btn:hover{opacity:1; transform:translateY(-50%) scale(1.2);}
+.copy-btn:hover{
+  opacity:1;
+  transform:translateY(-50%) scale(1.2);
+}
 
 .hidden{display:none;}
 
@@ -164,25 +167,25 @@ button:hover{
     <div class="item">
       <div class="label">Full Name</div>
       <div id="fullName" class="value"></div>
-      <div class="copy-btn" onclick="copyText('fullName')">📋</div>
+      <span class="copy-btn" onclick="copyText('fullName')">📋</span>
     </div>
 
     <div class="item">
       <div class="label">ID</div>
       <div id="id" class="value"></div>
-      <div class="copy-btn" onclick="copyText('id')">📋</div>
+      <span class="copy-btn" onclick="copyText('id')">📋</span>
     </div>
 
     <div class="item">
       <div class="label">Username</div>
       <div id="username" class="value"></div>
-      <div class="copy-btn" onclick="copyText('username')">📋</div>
+      <span class="copy-btn" onclick="copyText('username')">📋</span>
     </div>
 
     <div class="item">
       <div class="label">Image Link</div>
       <div id="imgLink" class="value"></div>
-      <div class="copy-btn" onclick="copyText('imgLink')">📋</div>
+      <span class="copy-btn" onclick="copyText('imgLink')">📋</span>
     </div>
 
   </div>
@@ -192,8 +195,7 @@ button:hover{
 <script>
 
 function copyText(id){
-  const el = document.getElementById(id);
-  navigator.clipboard.writeText(el.innerText);
+  navigator.clipboard.writeText(document.getElementById(id).innerText);
 }
 
 async function fetchData(){
@@ -222,11 +224,7 @@ async function fetchData(){
     let online = (data.online === true || data.online === "online" || data.status_online == 1);
     let dot = document.getElementById("statusDot");
 
-    if(online){
-      dot.className = "status-dot online-dot";
-    }else{
-      dot.className = "status-dot offline-dot";
-    }
+    dot.className = online ? "status-dot online-dot" : "status-dot offline-dot";
 
   }catch(e){
     alert("Error loading data");
