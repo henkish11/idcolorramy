@@ -106,8 +106,8 @@ button{
     </div>
 
     <div class="item">
-      <div class="label">Name Code (click to copy)</div>
-      <div id="nameCode" class="value copy" onclick="copyText('nameCode')"></div>
+      <div class="label">Username (click to copy)</div>
+      <div id="username" class="value copy" onclick="copyText('username')"></div>
     </div>
 
     <div class="item">
@@ -157,9 +157,9 @@ async function fetchData(){
 
     document.getElementById("id").innerText = data.id || "N/A";
 
-    // NAME CODE (new)
-    let nameCode = data.name_code || data.namecode || data.code || data.name || "N/A";
-    document.getElementById("nameCode").innerText = nameCode;
+    // USERNAME field
+    let username = data.username || data.user || data.nick || data.name || "N/A";
+    document.getElementById("username").innerText = username;
 
     let avatar = data.avatar || "https://xat.com/images/default_avatar.png";
     document.getElementById("avatar").src = avatar;
