@@ -3,79 +3,141 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ramy Profile | Secure Panel</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+<title>Profile System</title>
+
 <style>
-:root{
-  --bg:#050507;
-  --glass:rgba(15,15,20,0.85);
-  --border:rgba(255,255,255,0.08);
-  --green:#10b981;
-  --red:#ef4444;
-}
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Plus Jakarta Sans',sans-serif;transition:.4s;}
 body{
-  background:var(--bg);
+  margin:0;
+  font-family:Arial;
+  background:#0d0d0f;
   color:#fff;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   min-height:100vh;
-  overflow:hidden;
-}
-.container{width:100%;max-width:460px;padding:20px;}
-
-.card{
-  background:var(--glass);
-  border:1px solid var(--border);
-  border-radius:30px;
-  padding:40px;
-  backdrop-filter:blur(40px);
-  box-shadow:0 30px 80px rgba(0,0,0,0.8);
-  text-align:center;
 }
 
-input, textarea{
-  width:100%;padding:18px;margin:10px 0;
-  border-radius:20px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,0.03);
-  color:#fff;
+.box{
+  width:400px;
+  background:#15151a;
+  padding:20px;
+  border-radius:15px;
   text-align:center;
-  resize:none;
+  box-shadow:0 0 20px rgba(0,0,0,0.6);
+}
+
+input{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border:none;
+  border-radius:10px;
+  text-align:center;
 }
 
 button{
-  width:100%;padding:18px;
-  border-radius:20px;border:none;
-  background:#fff;color:#000;
-  font-weight:800;cursor:pointer;
-  text-transform:uppercase;
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:#fff;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.avatar{
+  width:120px;
+  height:120px;
+  border-radius:20px;
+  margin:10px auto;
+  display:block;
+}
+
+.item{
+  background:#222;
+  padding:10px;
+  margin:8px 0;
+  border-radius:10px;
+  word-break:break-word;
 }
 
 .hidden{display:none;}
-.title{font-size:26px;font-weight:800;margin-bottom:20px;}
-.small{font-size:12px;color:#aaa;}
+</style>
+</head>
 
-.info{text-align:left;margin-top:20px;}
+<body>
 
-.item{
-  padding:12px;
-  border:1px solid var(--border);
-  border-radius:15px;
-  margin:10px 0;
+<div class="box">
+
+  <h2>Profile System</h2>
+
+  <input id="userInput" placeholder="Enter ID">
+  <button onclick="fetchData()">Search</button>
+
+  <div id="result" class="hidden">
+
+    <img id="avatar" class="avatar">
+
+    <div class="item">
+      <b>Full Name:</b>
+      <div id="fullName"></div>
+    </div>
+
+    <div class="item">
+      <b>ID:</b>
+      <div id="id"></div>
+    </div>
+
+    <div class="item">
+      <b>Status:</b>
+      <div id="status"></div>
+    </div>
+
+    <div class="item">
+      <b>Image Link:</b>
+      <div id="imgLink"></div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+async function fetchData(){
+
+  let user = document.getElementById("userInput").value.trim();
+  if(!user) return alert("Enter ID");
+
+  let url = `https://pythbots.com/api/xatprofile.php?u=${user}`;
+  let proxy = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`;
+
+  try{
+
+    let res = await fetch(proxy);
+    let data = await res.json();
+
+    document.getElementById("result").classList.remove("hidden");
+
+    document.getElementById("fullName").innerText =
+      data.name || data.fullname || "N/A";
+
+    document.getElementById("id").innerText =
+      data.id || "N/A";
+
+    document.getElementById("status").innerText =
+      data.online ? "ONLINE" : "OFFLINE";
+
+    let avatar = data.avatar || "https://xat.com/images/default_avatar.png";
+
+    document.getElementById("avatar").src = avatar;
+    document.getElementById("imgLink").innerText = avatar;
+
+  } catch(e){
+    alert("Error loading data");
+    console.log(e);
+  }
 }
+</script>
 
-.label{
-  font-size:10px;
-  color:#888;
-  text-transform:uppercase;
-}
-
-.value{
-  font-size:14px;
-  font-weight:600;
-  word-break:break-all;
-}
-
-.status.online{color:var(--g
+</body>
+</html>
