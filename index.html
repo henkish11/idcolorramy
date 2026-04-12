@@ -35,13 +35,14 @@ body{
   text-align:center;
 }
 
-input{
+input, textarea{
   width:100%;padding:18px;margin:10px 0;
   border-radius:20px;
   border:1px solid var(--border);
   background:rgba(255,255,255,0.03);
   color:#fff;
   text-align:center;
+  resize:none;
 }
 
 button{
@@ -74,85 +75,7 @@ button{
 .value{
   font-size:14px;
   font-weight:600;
+  word-break:break-all;
 }
 
-.status.online{color:var(--green);}
-.status.offline{color:var(--red);}
-
-.avatar{
-  width:120px;
-  height:120px;
-  border-radius:35px;
-  object-fit:cover;
-  border:2px solid var(--border);
-  margin:0 auto 15px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-  <!-- APP ONLY (NO LOGIN) -->
-  <div id="app" class="card">
-    <div class="title">xat Profile System</div>
-
-    <input id="userInput" placeholder="Enter ID or Name">
-    <button onclick="fetchData()">Search</button>
-
-    <div id="result" class="info hidden">
-
-      <img id="avatar" class="avatar" src="" alt="avatar">
-
-      <div class="item">
-        <div class="label">Beautiful Name</div>
-        <div id="name" class="value"></div>
-      </div>
-
-      <div class="item">
-        <div class="label">ID</div>
-        <div id="id" class="value"></div>
-      </div>
-
-      <div class="item">
-        <div class="label">Status</div>
-        <div id="status" class="value"></div>
-      </div>
-
-    </div>
-  </div>
-
-</div>
-
-<script>
-async function fetchData(){
-  let user = document.getElementById('userInput').value.trim();
-  if(!user) return;
-
-  let url = `https://pythbots.com/api/xatprofile.php?u=${user}`;
-  let proxy = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`;
-
-  try{
-    let res = await fetch(proxy);
-    let data = await res.json();
-
-    document.getElementById('result').classList.remove('hidden');
-
-    document.getElementById('name').innerText = data.name || "N/A";
-    document.getElementById('id').innerText = data.id || "N/A";
-
-    let st = data.online ? "ONLINE" : "OFFLINE";
-    document.getElementById('status').innerText = st;
-    document.getElementById('status').className = 'value status ' + (data.online ? 'online' : 'offline');
-
-    document.getElementById('avatar').src = data.avatar || 'https://xat.com/images/default_avatar.png';
-
-  }catch(e){
-    alert('Error loading data');
-  }
-}
-</script>
-
-</body>
-</html>
+.status.online{color:var(--g
