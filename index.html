@@ -19,7 +19,20 @@ body{
   background:#050507;
 }
 
-body::before, body::after{
+/* NEW BACKGROUND IMAGE LAYER */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
+    url('https://xatimg.com/image/NTKWfOtODi9Z.jpg');
+  background-size:cover;
+  background-position:center;
+  z-index:-2;
+}
+
+body::after{
   content:"";
   position:absolute;
   width:420px;
@@ -27,10 +40,10 @@ body::before, body::after{
   background:radial-gradient(circle, rgba(255,255,255,0.08), transparent 60%);
   filter:blur(25px);
   animation:move 14s infinite alternate ease-in-out;
+  z-index:-1;
 }
 
-body::before{top:8%;left:10%;}
-body::after{bottom:8%;right:10%;animation-duration:20s;}
+body::before{top:0;left:0;}
 
 @keyframes move{
   from{transform:translate(0,0) scale(1);}
