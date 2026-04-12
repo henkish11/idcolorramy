@@ -62,6 +62,7 @@ button{
 }
 
 .hidden{display:none;}
+
 </style>
 </head>
 
@@ -89,8 +90,8 @@ button{
     </div>
 
     <div class="item">
-      <b>Status:</b>
-      <div id="status"></div>
+      <b>Name Link:</b>
+      <div id="nameLink"></div>
     </div>
 
     <div class="item">
@@ -118,26 +119,11 @@ async function fetchData(){
 
     document.getElementById("result").classList.remove("hidden");
 
-    document.getElementById("fullName").innerText =
-      data.name || data.fullname || "N/A";
+    document.getElementById("fullName").innerText = data.name || data.fullname || "N/A";
+    document.getElementById("id").innerText = data.id || "N/A";
 
-    document.getElementById("id").innerText =
-      data.id || "N/A";
+    // NAME LINK (new field)
+    let nameLink = data.name_link || data.profile_link || data.link || "N/A";
+    document.getElementById("nameLink").innerText = nameLink;
 
-    document.getElementById("status").innerText =
-      data.online ? "ONLINE" : "OFFLINE";
-
-    let avatar = data.avatar || "https://xat.com/images/default_avatar.png";
-
-    document.getElementById("avatar").src = avatar;
-    document.getElementById("imgLink").innerText = avatar;
-
-  } catch(e){
-    alert("Error loading data");
-    console.log(e);
-  }
-}
-</script>
-
-</body>
-</html>
+    let avatar = data.avatar || "https://xat.com/images/
