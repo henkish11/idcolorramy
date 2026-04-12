@@ -18,7 +18,7 @@ body{
 }
 
 .box{
-  width:400px;
+  width:420px;
   background:#15151a;
   padding:20px;
   border-radius:15px;
@@ -33,6 +33,7 @@ input{
   border:none;
   border-radius:10px;
   text-align:center;
+  outline:none;
 }
 
 button{
@@ -51,6 +52,7 @@ button{
   border-radius:20px;
   margin:10px auto;
   display:block;
+  object-fit:cover;
 }
 
 .item{
@@ -63,6 +65,20 @@ button{
 
 .hidden{display:none;}
 
+.label{
+  font-size:12px;
+  color:#aaa;
+}
+
+.value{
+  font-size:14px;
+  font-weight:bold;
+}
+
+.copy{
+  cursor:pointer;
+}
+
 </style>
 </head>
 
@@ -72,7 +88,7 @@ button{
 
   <h2>Profile System</h2>
 
-  <input id="userInput" placeholder="Enter ID">
+  <input id="userInput" placeholder="Enter ID or Name">
   <button onclick="fetchData()">Search</button>
 
   <div id="result" class="hidden">
@@ -80,23 +96,23 @@ button{
     <img id="avatar" class="avatar">
 
     <div class="item">
-      <b>Full Name:</b>
-      <div id="fullName"></div>
+      <div class="label">Full Name (click to copy)</div>
+      <div id="fullName" class="value copy" onclick="copyText('fullName')"></div>
     </div>
 
     <div class="item">
-      <b>ID:</b>
-      <div id="id"></div>
+      <div class="label">ID</div>
+      <div id="id" class="value"></div>
     </div>
 
     <div class="item">
-      <b>Name Link:</b>
-      <div id="nameLink"></div>
+      <div class="label">Name Link</div>
+      <div id="nameLink" class="value copy" onclick="copyText('nameLink')"></div>
     </div>
 
     <div class="item">
-      <b>Image Link:</b>
-      <div id="imgLink"></div>
+      <div class="label">Image Link</div>
+      <div id="imgLink" class="value copy" onclick="copyText('imgLink')"></div>
     </div>
 
   </div>
@@ -104,10 +120,22 @@ button{
 </div>
 
 <script>
+
+function copyText(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  navigator.clipboard.writeText(el.innerText);
+  alert("Copied");
+}
+
 async function fetchData(){
 
   let user = document.getElementById("userInput").value.trim();
-  if(!user) return alert("Enter ID");
+
+  if(!user){
+    alert("Please enter ID or name");
+    return;
+  }
 
   let url = `https://pythbots.com/api/xatprofile.php?u=${user}`;
   let proxy = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`;
@@ -117,13 +145,34 @@ async function fetchData(){
     let res = await fetch(proxy);
     let data = await res.json();
 
+    if(!data){
+      alert("No data found");
+      return;
+    }
+
     document.getElementById("result").classList.remove("hidden");
 
-    document.getElementById("fullName").innerText = data.name || data.fullname || "N/A";
+    let name = data.name || data.fullname || "N/A";
+    document.getElementById("fullName").innerText = name;
+
     document.getElementById("id").innerText = data.id || "N/A";
 
-    // NAME LINK (new field)
-    let nameLink = data.name_link || data.profile_link || data.link || "N/A";
-    document.getElementById("nameLink").innerText = nameLink;
+    let link = data.name_link || data.profile_link || data.link || "N/A";
+    document.getElementById("nameLink").innerText = link;
 
-    let avatar = data.avatar || "https://xat.com/images/
+    let avatar = data.avatar || "https://xat.com/images/default_avatar.png";
+    document.getElementById("avatar").src = avatar;
+
+    document.getElementById("imgLink").innerText = avatar;
+
+  }catch(err){
+    console.error(err);
+    alert("Error fetching data. Check API or internet.");
+  }
+
+}
+
+</script>
+
+</body>
+</html>
