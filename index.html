@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ramy Profile | Secure Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050507;
+  --glass:rgba(15,15,20,0.85);
+  --border:rgba(255,255,255,0.08);
+  --accent:#ffffff;
+  --green:#10b981;
+  --red:#ef4444;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Plus Jakarta Sans',sans-serif;transition:.4s;}
+body{
+  background:var(--bg);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+  overflow:hidden;
+}
+.container{width:100%;max-width:460px;padding:20px;z-index:10;}
+.card{
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:30px;
+  padding:40px;
+  backdrop-filter:blur(40px);
+  box-shadow:0 30px 80px rgba(0,0,0,0.8);
+  text-align:center;
+}
+input{
+  width:100%;padding:18px;margin:10px 0;
+  border-radius:20px;border:1px solid var(--border);
+  background:rgba(255,255,255,0.03);
+  color:#fff;text-align:center;
+}
+button{
+  width:100%;padding:18px;
+  border-radius:20px;border:none;
+  background:#fff;color:#000;
+  font-weight:800;cursor:pointer;
+  text-transform:uppercase;
+}
+.hidden{display:none;}
+.title{font-size:26px;font-weight:800;margin-bottom:20px;}
+.small{font-size:12px;color:#aaa;}
+.info{margin-top:20px;text-align:left;}
+.item{padding:12px;border:1px solid var(--border);border-radius:15px;margin:10px 0;}
+.label{font-size:10px;color:#888;text-transform:uppercase;}
+.value{font-size:14px;font-weight:600;}
+.status.online{color:var(--green)}
+.status.offline{color:var(--red)}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- LOGIN -->
+<div id="login" class="card">
+  <div class="title">🔐 Secure Login</div>
+  <input id="username" placeholder="Username">
+  <input id="password" type="password" placeholder="Password">
+  <button onclick="login()">Enter</button>
+  <div class="small">Made for Ramy Abdelsattar</div>
+</div>
+
+<!-- APP -->
+<div id="app" class="card hidden">
+  <div class="title">xat Profile System</div>
+  <input id="userInput" placeholder="Enter ID or Name">
+  <button onclick="fetchData()">Search</button>
+
+  <div id="result" class="info hidden">
+    <div class="item"><div class="label">Name</div><div id="name" class="value"></div></div>
+    <div class="item"><div class="label">ID</div><div id="id" class="value"></div></div>
+    <div class="item"><div class="label">Status</div><div id="status" class="value"></div></div>
