@@ -105,4 +105,94 @@ button{
 
 <!-- APP -->
 <div id="app" class="card hidden">
-  <div
+  <div class="title">xat Profile System</div>
+
+  <input id="userInput" placeholder="Enter ID or Name">
+  <button onclick="fetchData()">Search</button>
+
+  <div id="result" class="info hidden">
+
+    <!-- AVATAR -->
+    <img id="avatar" class="avatar" src="" alt="avatar">
+
+    <div class="item">
+      <div class="label">Beautiful Name</div>
+      <div id="name" class="value"></div>
+    </div>
+
+    <div class="item">
+      <div class="label">ID</div>
+      <div id="id" class="value"></div>
+    </div>
+
+    <div class="item">
+      <div class="label">Status</div>
+      <div id="status" class="value"></div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<script>
+const PASS = "1207";
+
+function login(){
+  let p = document.getElementById('password').value;
+
+  console.log('Entered password:', p);
+
+  if(String(p).trim() === PASS){
+    document.getElementById('login').classList.add('hidden');
+    document.getElementById('app').classList.remove('hidden');
+  } else {
+    alert('Wrong password');
+  }
+}
+
+// Allow Enter key to login
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Enter'){
+    const loginBox = document.getElementById('login');
+    if(loginBox && !loginBox.classList.contains('hidden')){
+      login(); else {
+    alert('Wrong password');
+  }
+}
+
+async function fetchData(){
+  let user = document.getElementById('userInput').value.trim();
+  if(!user) return;
+
+  let url = `https://pythbots.com/api/xatprofile.php?u=${user}`;
+  let proxy = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`;
+
+  try{
+    let res = await fetch(proxy);
+    let data = await res.json();
+
+    document.getElementById('result').classList.remove('hidden');
+
+    // NAME
+    document.getElementById('name').innerText = data.name || "N/A";
+
+    // ID
+    document.getElementById('id').innerText = data.id || "N/A";
+
+    // STATUS
+    let st = data.online ? "ONLINE" : "OFFLINE";
+    document.getElementById('status').innerText = st;
+    document.getElementById('status').className = 'value status ' + (data.online ? 'online' : 'offline');
+
+    // AVATAR
+    document.getElementById('avatar').src = data.avatar || 'https://xat.com/images/default_avatar.png';
+
+  }catch(e){
+    alert('Error loading data');
+  }
+}
+</script>
+
+</body>
+</html>
