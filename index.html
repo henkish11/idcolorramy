@@ -1,4 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Radio by ramy</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#0a0a0a;
+    font-family:Arial;
+}
+
+.box{
+    text-align:center;
+    padding:25px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.05);
+    box-shadow:0 0 20px #00ffcc55;
+    width:300px;
+}
+
+h2{
+    color:#00ffcc;
+    text-shadow:0 0 10px #00ffcc;
+}
+
+button{
+    padding:10px 18px;
+    margin:5px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.play{background:#00ffcc;}
+.stop{background:#ff4444;color:white;}
+
+p{
+    margin-top:10px;
+    font-size:12px;
+    color:#aaa;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>🎧 Radio by ramy</h2>
+
+    <audio id="radio"></audio>
+
+    <button class="play" onclick="playRadio()">▶ تشغيل</button>
+    <button class="stop" onclick="stopRadio()">⏸ إيقاف</button>
+
+    <p>Powered by ramy 💎</p>
+
+</div>
+
 <script>
-<!-- code by https://www.html-code-generator.com -->
-document.write(unescape('%3C%21DOCTYPE%20html%3E%0A%3Chtml%20lang%3D%22en%22%3E%0A%3Chead%3E%0A%3Cmeta%20charset%3D%22UTF-8%22%3E%0A%3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%20initial-scale%3D1.0%22%3E%0A%3Ctitle%3EProfile%20System%3C/title%3E%0A%0A%3Cstyle%3E%0A%0Abody%7B%0A%20%20margin%3A0%3B%0A%20%20font-family%3AArial%3B%0A%20%20color%3A%23fff%3B%0A%20%20display%3Aflex%3B%0A%20%20justify-content%3Acenter%3B%0A%20%20align-items%3Acenter%3B%0A%20%20min-height%3A100vh%3B%0A%20%20overflow%3Ahidden%3B%0A%20%20background%3A%23050507%3B%0A%7D%0A%0A/*%20BACKGROUND%20IMAGE%20*/%0Abody%3A%3Abefore%7B%0A%20%20content%3A%22%22%3B%0A%20%20position%3Afixed%3B%0A%20%20inset%3A0%3B%0A%20%20background%3A%0A%20%20%20%20linear-gradient%28rgba%280%2C0%2C0%2C0.75%29%2C%20rgba%280%2C0%2C0%2C0.85%29%29%2C%0A%20%20%20%20url%28%27https%3A//xatimg.com/image/NTKWfOtODi9Z.jpg%27%29%3B%0A%20%20background-size%3Acover%3B%0A%20%20background-position%3Acenter%3B%0A%20%20z-index%3A-2%3B%0A%7D%0A%0Abody%3A%3Aafter%7B%0A%20%20content%3A%22%22%3B%0A%20%20position%3Aabsolute%3B%0A%20%20width%3A420px%3B%0A%20%20height%3A420px%3B%0A%20%20background%3Aradial-gradient%28circle%2C%20rgba%28255%2C255%2C255%2C0.08%29%2C%20transparent%2060%25%29%3B%0A%20%20filter%3Ablur%2825px%29%3B%0A%20%20animation%3Amove%2014s%20infinite%20alternate%20ease-in-out%3B%0A%20%20z-index%3A-1%3B%0A%7D%0A%0A@keyframes%20move%7B%0A%20%20from%7Btransform%3Atranslate%280%2C0%29%20scale%281%29%3B%7D%0A%20%20to%7Btransform%3Atranslate%2890px%2C120px%29%20scale%281.2%29%3B%7D%0A%7D%0A%0A/*%20LOGIN%20OVERLAY%20*/%0A%23loginScreen%7B%0A%20%20position%3Afixed%3B%0A%20%20inset%3A0%3B%0A%20%20display%3Aflex%3B%0A%20%20justify-content%3Acenter%3B%0A%20%20align-items%3Acenter%3B%0A%20%20background%3Argba%280%2C0%2C0%2C0.85%29%3B%0A%20%20z-index%3A9999%3B%0A%7D%0A%0A.login-box%7B%0A%20%20width%3A320px%3B%0A%20%20padding%3A25px%3B%0A%20%20background%3Argba%2820%2C20%2C25%2C0.9%29%3B%0A%20%20border-radius%3A18px%3B%0A%20%20text-align%3Acenter%3B%0A%20%20border%3A1px%20solid%20rgba%28255%2C255%2C255%2C0.1%29%3B%0A%20%20backdrop-filter%3Ablur%2815px%29%3B%0A%7D%0A%0A.login-box%20input%7B%0A%20%20width%3A100%25%3B%0A%20%20padding%3A12px%3B%0A%20%20margin-top%3A15px%3B%0A%20%20border%3Anone%3B%0A%20%20border-radius%3A10px%3B%0A%20%20text-align%3Acenter%3B%0A%20%20outline%3Anone%3B%0A%7D%0A%0A.login-box%20button%7B%0A%20%20width%3A100%25%3B%0A%20%20padding%3A12px%3B%0A%20%20margin-top%3A15px%3B%0A%20%20border%3Anone%3B%0A%20%20border-radius%3A10px%3B%0A%20%20background%3A%23fff%3B%0A%20%20font-weight%3Abold%3B%0A%20%20cursor%3Apointer%3B%0A%7D%0A%0A.box%7B%0A%20%20width%3A520px%3B%0A%20%20background%3Argba%2820%2C20%2C25%2C0.75%29%3B%0A%20%20padding%3A25px%3B%0A%20%20border-radius%3A22px%3B%0A%20%20text-align%3Acenter%3B%0A%20%20box-shadow%3A0%200%2050px%20rgba%280%2C0%2C0%2C0.7%29%3B%0A%20%20backdrop-filter%3Ablur%2818px%29%3B%0A%20%20border%3A1px%20solid%20rgba%28255%2C255%2C255%2C0.08%29%3B%0A%20%20position%3Arelative%3B%0A%20%20z-index%3A2%3B%0A%7D%0A%0Ainput%7B%0A%20%20width%3A100%25%3B%0A%20%20padding%3A14px%3B%0A%20%20margin%3A10px%200%3B%0A%20%20border%3Anone%3B%0A%20%20border-radius%3A12px%3B%0A%20%20text-align%3Acenter%3B%0A%20%20background%3Argba%28255%2C255%2C255%2C0.05%29%3B%0A%20%20color%3A%23fff%3B%0A%20%20outline%3Anone%3B%0A%7D%0A%0Abutton%7B%0A%20%20width%3A100%25%3B%0A%20%20padding%3A14px%3B%0A%20%20border%3Anone%3B%0A%20%20border-radius%3A14px%3B%0A%20%20cursor%3Apointer%3B%0A%20%20font-weight%3Abold%3B%0A%20%20background%3Alinear-gradient%28135deg%2C%23ffffff%2C%23cfcfcf%29%3B%0A%20%20color%3A%23000%3B%0A%20%20transition%3A0.3s%3B%0A%7D%0Abutton%3Ahover%7B%0A%20%20transform%3Ascale%281.03%29%3B%0A%20%20box-shadow%3A0%200%2025px%20rgba%28255%2C255%2C255%2C0.2%29%3B%0A%7D%0A%0A.avatar-wrap%7B%0A%20%20position%3Arelative%3B%0A%20%20width%3A120px%3B%0A%20%20height%3A120px%3B%0A%20%20margin%3A10px%20auto%3B%0A%7D%0A%0A.avatar%7B%0A%20%20width%3A120px%3B%0A%20%20height%3A120px%3B%0A%20%20border-radius%3A28px%3B%0A%20%20object-fit%3Acover%3B%0A%20%20border%3A2px%20solid%20rgba%28255%2C255%2C255%2C0.2%29%3B%0A%7D%0A%0A.status-dot%7B%0A%20%20position%3Aabsolute%3B%0A%20%20width%3A14px%3B%0A%20%20height%3A14px%3B%0A%20%20border-radius%3A50%25%3B%0A%20%20bottom%3A6px%3B%0A%20%20right%3A6px%3B%0A%20%20border%3A2px%20solid%20%23111%3B%0A%7D%0A%0A.online-dot%7Bbackground%3A%2300ff99%3B%20box-shadow%3A0%200%2010px%20%2300ff99%3B%7D%0A.offline-dot%7Bbackground%3A%23ff4d4d%3B%20box-shadow%3A0%200%2010px%20%23ff4d4d%3B%7D%0A%0A.item%7B%0A%20%20background%3Argba%28255%2C255%2C255%2C0.05%29%3B%0A%20%20padding%3A14px%2045px%2014px%2014px%3B%0A%20%20margin%3A10px%200%3B%0A%20%20border-radius%3A14px%3B%0A%20%20text-align%3Aleft%3B%0A%20%20position%3Arelative%3B%0A%20%20word-break%3Abreak-word%3B%0A%7D%0A%0A.label%7B%0A%20%20font-size%3A11px%3B%0A%20%20color%3A%23aaa%3B%0A%20%20text-transform%3Auppercase%3B%0A%7D%0A%0A.value%7B%0A%20%20font-size%3A14px%3B%0A%20%20font-weight%3Abold%3B%0A%20%20margin-top%3A4px%3B%0A%7D%0A%0A.copy-btn%7B%0A%20%20position%3Aabsolute%3B%0A%20%20right%3A12px%3B%0A%20%20top%3A50%25%3B%0A%20%20transform%3AtranslateY%28-50%25%29%3B%0A%20%20cursor%3Apointer%3B%0A%20%20font-size%3A16px%3B%0A%20%20opacity%3A0.7%3B%0A%20%20transition%3A0.3s%3B%0A%7D%0A.copy-btn%3Ahover%7B%0A%20%20opacity%3A1%3B%0A%20%20transform%3AtranslateY%28-50%25%29%20scale%281.2%29%3B%0A%7D%0A%0A.hidden%7Bdisplay%3Anone%3B%7D%0A%0A%3C/style%3E%0A%3C/head%3E%0A%0A%3Cbody%3E%0A%0A%3C%21--%20LOGIN%20SCREEN%20--%3E%0A%3Cdiv%20id%3D%22loginScreen%22%3E%0A%20%20%3Cdiv%20class%3D%22login-box%22%3E%0A%20%20%20%20%3Ch3%3EEnter%20Password%3C/h3%3E%0A%20%20%20%20%3Cinput%20type%3D%22password%22%20id%3D%22passInput%22%20placeholder%3D%22Password%22%3E%0A%20%20%20%20%3Cbutton%20onclick%3D%22checkPass%28%29%22%3EUnlock%3C/button%3E%0A%20%20%3C/div%3E%0A%3C/div%3E%0A%0A%3Cdiv%20class%3D%22box%22%3E%0A%0A%20%20%3Ch2%3EProfile%20System%3C/h2%3E%0A%0A%20%20%3Cinput%20id%3D%22userInput%22%20placeholder%3D%22Enter%20ID%20or%20Name%22%3E%0A%20%20%3Cbutton%20onclick%3D%22fetchData%28%29%22%3ESearch%20Profile%3C/button%3E%0A%0A%20%20%3Cdiv%20id%3D%22result%22%20class%3D%22hidden%22%3E%0A%0A%20%20%20%20%3Cdiv%20class%3D%22avatar-wrap%22%3E%0A%20%20%20%20%20%20%3Cimg%20id%3D%22avatar%22%20class%3D%22avatar%22%3E%0A%20%20%20%20%20%20%3Cspan%20id%3D%22statusDot%22%20class%3D%22status-dot%22%3E%3C/span%3E%0A%20%20%20%20%3C/div%3E%0A%0A%20%20%20%20%3Cdiv%20class%3D%22item%22%3E%0A%20%20%20%20%20%20%3Cdiv%20class%3D%22label%22%3EFull%20Name%3C/div%3E%0A%20%20%20%20%20%20%3Cdiv%20id%3D%22fullName%22%20class%3D%22value%22%3E%3C/div%3E%0A%20%20%20%20%20%20%3Cspan%20class%3D%22copy-btn%22%20onclick%3D%22copyText%28%27fullName%27%29%22%3E%uD83D%uDCCB%3C/span%3E%0A%20%20%20%20%3C/div%3E%0A%0A%20%20%20%20%3Cdiv%20class%3D%22item%22%3E%0A%20%20%20%20%20%20%3Cdiv%20class%3D%22label%22%3EID%3C/div%3E%0A%20%20%20%20%20%20%3Cdiv%20id%3D%22id%22%20class%3D%22value%22%3E%3C/div%3E%0A%20%20%20%20%20%20%3Cspan%20class%3D%22copy-btn%22%20onclick%3D%22copyText%28%27id%27%29%22%3E%uD83D%uDCCB%3C/span%3E%0A%20%20%20%20%3C/div%3E%0A%0A%20%20%20%20%3Cdiv%20class%3D%22item%22%3E%0A%20%20%20%20%20%20%3Cdiv%20class%3D%22label%22%3EUsername%3C/div%3E%0A%20%20%20%20%20%20%3Cdiv%20id%3D%22username%22%20class%3D%22value%22%3E%3C/div%3E%0A%20%20%20%20%20%20%3Cspan%20class%3D%22copy-btn%22%20onclick%3D%22copyText%28%27username%27%29%22%3E%uD83D%uDCCB%3C/span%3E%0A%20%20%20%20%3C/div%3E%0A%0A%20%20%20%20%3Cdiv%20class%3D%22item%22%3E%0A%20%20%20%20%20%20%3Cdiv%20class%3D%22label%22%3EImage%20Link%3C/div%3E%0A%20%20%20%20%20%20%3Cdiv%20id%3D%22imgLink%22%20class%3D%22value%22%3E%3C/div%3E%0A%20%20%20%20%20%20%3Cspan%20class%3D%22copy-btn%22%20onclick%3D%22copyText%28%27imgLink%27%29%22%3E%uD83D%uDCCB%3C/span%3E%0A%20%20%20%20%3C/div%3E%0A%0A%20%20%3C/div%3E%0A%0A%3C/div%3E%0A%0A%3Cscript%3E%0A%0Afunction%20checkPass%28%29%7B%0A%20%20let%20pass%20%3D%20document.getElementById%28%22passInput%22%29.value%3B%0A%20%20if%28pass%20%3D%3D%3D%20%222035%22%29%7B%0A%20%20%20%20document.getElementById%28%22loginScreen%22%29.style.display%20%3D%20%22none%22%3B%0A%20%20%7D%20else%20%7B%0A%20%20%20%20alert%28%22Wrong%20password%22%29%3B%0A%20%20%7D%0A%7D%0A%0Afunction%20copyText%28id%29%7B%0A%20%20navigator.clipboard.writeText%28document.getElementById%28id%29.innerText%29%3B%0A%7D%0A%0Aasync%20function%20fetchData%28%29%7B%0A%0A%20%20let%20user%20%3D%20document.getElementById%28%22userInput%22%29.value.trim%28%29%3B%0A%20%20if%28%21user%29%20return%3B%0A%0A%20%20let%20url%20%3D%20%60https%3A//pythbots.com/api/xatprofile.php%3Fu%3D%24%7Buser%7D%60%3B%0A%20%20let%20proxy%20%3D%20%60https%3A//api.codetabs.com/v1/proxy%3Fquest%3D%24%7BencodeURIComponent%28url%29%7D%60%3B%0A%0A%20%20try%7B%0A%0A%20%20%20%20let%20res%20%3D%20await%20fetch%28proxy%29%3B%0A%20%20%20%20let%20data%20%3D%20await%20res.json%28%29%3B%0A%0A%20%20%20%20document.getElementById%28%22result%22%29.classList.remove%28%22hidden%22%29%3B%0A%0A%20%20%20%20document.getElementById%28%22fullName%22%29.innerText%20%3D%20data.name%20%7C%7C%20%22N/A%22%3B%0A%20%20%20%20document.getElementById%28%22id%22%29.innerText%20%3D%20data.id%20%7C%7C%20%22N/A%22%3B%0A%20%20%20%20document.getElementById%28%22username%22%29.innerText%20%3D%20data.username%20%7C%7C%20data.nick%20%7C%7C%20data.name%20%7C%7C%20%22N/A%22%3B%0A%0A%20%20%20%20let%20avatar%20%3D%20data.avatar%20%7C%7C%20%22https%3A//xat.com/images/default_avatar.png%22%3B%0A%20%20%20%20document.getElementById%28%22avatar%22%29.src%20%3D%20avatar%3B%0A%20%20%20%20document.getElementById%28%22imgLink%22%29.innerText%20%3D%20avatar%3B%0A%0A%20%20%20%20let%20online%20%3D%20%28data.online%20%3D%3D%3D%20true%20%7C%7C%20data.online%20%3D%3D%3D%20%22online%22%20%7C%7C%20data.status_online%20%3D%3D%201%29%3B%0A%20%20%20%20document.getElementById%28%22statusDot%22%29.className%20%3D%20online%20%3F%20%22status-dot%20online-dot%22%20%3A%20%22status-dot%20offline-dot%22%3B%0A%0A%20%20%7Dcatch%28e%29%7B%0A%20%20%20%20alert%28%22Error%20loading%20data%22%29%3B%0A%20%20%7D%0A%0A%7D%0A%0A%3C/script%3E%0A%0A%3C/body%3E%0A%3C/html%3E%0A'));
+let radio = document.getElementById("radio");
+
+// 🎵 Playlist بتاعتك
+let songs = [
+"https://files.catbox.moe/l3v5de.mp3",
+"https://files.catbox.moe/3dgk4m.mp3",
+"https://files.catbox.moe/dhklgh.mp3",
+"https://files.catbox.moe/0mn7qi.mp3",
+"https://files.catbox.moe/d1ppiw.mp3",
+"https://files.catbox.moe/wl7kuy.mp3",
+"https://files.catbox.moe/4topxh.mp3",
+"https://files.catbox.moe/z7d6tg.mp3",
+"https://files.catbox.moe/7lua61.mp3",
+"https://files.catbox.moe/17u38n.mp3",
+"https://files.catbox.moe/3vsv5k.mp3",
+"https://files.catbox.moe/0dhvei.mp3",
+"https://files.catbox.moe/h7fa10.mp3",
+"https://files.catbox.moe/yl4ngh.mp3",
+"https://files.catbox.moe/mfr80z.mp3",
+"https://files.catbox.moe/6zoirr.mp3",
+"https://files.catbox.moe/nqcdgi.mp3",
+"https://files.catbox.moe/w6mbo9.mp3",
+"https://files.catbox.moe/fvabge.mp3",
+"https://files.catbox.moe/l8gmod.mp3",
+"https://files.catbox.moe/lmqvi3.mp3"
+];
+
+let index = 0;
+radio.src = songs[index];
+radio.volume = 0.7;
+
+function playRadio(){
+    radio.play();
+}
+
+function stopRadio(){
+    radio.pause();
+}
+
+// لما الأغنية تخلص يروح للي بعدها
+radio.onended = function(){
+    index++;
+    if(index >= songs.length){
+        index = 0;
+    }
+    radio.src = songs[index];
+    radio.play();
+};
 </script>
+
+</body>
+</html>
