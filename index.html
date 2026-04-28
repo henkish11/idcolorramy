@@ -2,118 +2,1487 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Radio by ramy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAMY SYSTEM</title>
 
 <style>
 body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#0a0a0a;
-    font-family:Arial;
+  margin:0;
+  font-family:Arial;
+  background:#020617;
+  color:#fff;
 }
 
+/* ================= LOGIN ================= */
+.login{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    radial-gradient(circle at top,#00c3ff22,transparent 40%),
+    radial-gradient(circle at bottom,#a855f722,transparent 40%),
+    #020617;
+
+  backdrop-filter:blur(10px);
+  z-index:999;
+}
+
+/* ✨ Glass futuristic box */
+.login-box{
+  width:320px;
+  padding:25px;
+  border-radius:20px;
+
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(20px);
+
+  border:1px solid rgba(0,195,255,0.25);
+
+  box-shadow:
+    0 0 25px #00c3ff33,
+    0 0 60px #00f5ff22;
+
+  text-align:center;
+
+  animation:boxFloat 4s infinite ease-in-out;
+}
+
+@keyframes boxFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+
+.login-box h3{
+  font-size:13px;
+  letter-spacing:2px;
+  color:#00f5ff;
+  text-shadow:0 0 10px #00c3ff;
+}
+
+.login-box input{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+
+  border:none;
+  border-radius:12px;
+
+  background:rgba(2,6,23,0.8);
+  color:#fff;
+
+  text-align:center;
+  font-size:12px;
+
+  outline:none;
+
+  box-shadow:0 0 10px #00c3ff33;
+  transition:.3s;
+}
+
+.login-box input:focus{
+  transform:scale(1.03);
+  box-shadow:0 0 20px #00f5ff;
+}
+
+.login-box button{
+  width:100%;
+  margin-top:12px;
+  padding:10px;
+
+  border:none;
+  border-radius:12px;
+
+  background:linear-gradient(45deg,#00c3ff,#1e3a8a,#a855f7);
+  color:#fff;
+
+  cursor:pointer;
+
+  box-shadow:0 0 20px #00c3ff33;
+  transition:.3s;
+}
+
+.login-box button:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 30px #00f5ff;
+}
+
+/* ================= TOP ================= */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  padding:10px;
+  background:#00000066;
+}
+
+/* ONLINE */
+.status{
+  color:#00f5ff;
+  font-weight:bold;
+  animation:blink 1.5s infinite;
+  text-shadow:0 0 10px #00f5ff;
+}
+
+@keyframes blink{
+  0%,100%{opacity:1}
+  50%{opacity:0.3}
+}
+
+/* BY RAMY */
+.brand{
+  font-weight:bold;
+  background:linear-gradient(90deg,#00f5ff,#a855f7,#00c3ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:fadeGlow 2s infinite;
+}
+
+@keyframes fadeGlow{
+  0%,100%{opacity:1}
+  50%{opacity:0.3}
+}
+
+/* ================= BOX ================= */
 .box{
-    text-align:center;
-    padding:25px;
-    border-radius:18px;
-    background:rgba(255,255,255,0.05);
-    box-shadow:0 0 20px #00ffcc55;
-    width:300px;
+  width:900px;
+  margin:70px auto;
+  background:#ffffff0a;
+  padding:15px;
+  border-radius:15px;
 }
 
-h2{
-    color:#00ffcc;
-    text-shadow:0 0 10px #00ffcc;
+/* PROFILE */
+.top{
+  display:flex;
+  gap:15px;
+  align-items:center;
 }
 
-button{
-    padding:10px 18px;
-    margin:5px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    font-weight:bold;
+/* ✨ AVATAR PULSE GLOW */
+.avatar{
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  border:2px solid #00c3ff;
+
+  animation:avatarPulse 2.2s infinite ease-in-out;
 }
 
-.play{background:#00ffcc;}
-.stop{background:#ff4444;color:white;}
+@keyframes avatarPulse{
+  0%,100%{
+    box-shadow:
+      0 0 5px #00c3ff,
+      0 0 15px #00f5ff,
+      0 0 25px #00c3ff;
+    transform:scale(1);
+    opacity:1;
+  }
 
-p{
-    margin-top:10px;
-    font-size:12px;
-    color:#aaa;
+  50%{
+    box-shadow:
+      0 0 0px #00c3ff,
+      0 0 10px #00f5ff,
+      0 0 40px #00c3ff;
+    transform:scale(1.05);
+    opacity:0.85;
+  }
 }
+
+.avatar:hover{
+  transform:scale(1.1);
+}
+
+/* NAME */
+.name{
+  font-size:44px;
+  font-weight:900;
+  background:linear-gradient(90deg,#00f5ff,#a855f7,#00c3ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:ramyGlow 2s infinite;
+}
+
+@keyframes ramyGlow{
+  0%,100%{
+    opacity:1;
+    text-shadow:0 0 10px #00c3ff,0 0 20px #00f5ff;
+  }
+  50%{
+    opacity:0.3;
+    text-shadow:0 0 5px #00c3ff;
+  }
+}
+
+/* RADIO */
+.radio{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:10px;
+}
+
+.radio-btn{
+  padding:6px 10px;
+  border:none;
+  border-radius:20px;
+  background:#00c3ff;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.radio-btn:hover{transform:scale(1.1)}
+
+/* RADIO BOX */
+.radio-box{
+  margin-top:10px;
+  padding:10px;
+  background:#00c3ff22;
+  border-radius:12px;
+  display:inline-block;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.radio-box:hover{
+  transform:scale(1.15);
+  box-shadow:0 0 25px #00c3ff;
+}
+
+.radio-box.active{
+  transform:scale(1.2);
+  box-shadow:0 0 35px #00f5ff;
+}
+
+/* LINKS */
+.links a{
+  display:block;
+  margin:5px 0;
+  padding:8px;
+  background:#00c3ff22;
+  color:#fff;
+  text-decoration:none;
+  border-radius:8px;
+  transition:.2s;
+}
+
+.links a:hover{
+  transform:scale(1.08);
+}
+
+/* SONGS */
+.wrap{display:flex;gap:10px;margin-top:10px}
+.col{flex:1}
+
+.song{
+  display:flex;
+  justify-content:space-between;
+  padding:6px;
+  margin:4px 0;
+  background:#00c3ff22;
+  border-radius:8px;
+  font-size:12px;
+  transition:.2s;
+}
+
+.song:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 15px #00c3ff;
+}
+
+.song button{
+  border:none;
+  padding:3px 6px;
+  border-radius:6px;
+}
+
+.play{background:#00c3ff}
+.stop{background:#ff4d4d}
+
 </style>
 </head>
 
 <body>
 
-<div class="box">
-
-    <h2>🎧 Radio by ramy</h2>
-
-    <audio id="radio"></audio>
-
-    <button class="play" onclick="playRadio()">▶ تشغيل</button>
-    <button class="stop" onclick="stopRadio()">⏸ إيقاف</button>
-
-    <p>Powered by ramy 💎</p>
-
+<!-- LOGIN -->
+<div class="login" id="login">
+<div class="login-box">
+<h3>🔐 PASSWORD</h3>
+<input type="password" id="pass" placeholder="Enter password">
+<button onclick="check()">ENTER</button>
+</div>
 </div>
 
-<script>
-let radio = document.getElementById("radio");
+<!-- MAIN -->
+<div id="main" style="display:none">
 
-// 🎵 Playlist بتاعتك
-let songs = [
-"https://files.catbox.moe/l3v5de.mp3",
-"https://files.catbox.moe/3dgk4m.mp3",
-"https://files.catbox.moe/dhklgh.mp3",
-"https://files.catbox.moe/0mn7qi.mp3",
-"https://files.catbox.moe/d1ppiw.mp3",
-"https://files.catbox.moe/wl7kuy.mp3",
-"https://files.catbox.moe/4topxh.mp3",
-"https://files.catbox.moe/z7d6tg.mp3",
-"https://files.catbox.moe/7lua61.mp3",
-"https://files.catbox.moe/17u38n.mp3",
-"https://files.catbox.moe/3vsv5k.mp3",
-"https://files.catbox.moe/0dhvei.mp3",
-"https://files.catbox.moe/h7fa10.mp3",
-"https://files.catbox.moe/yl4ngh.mp3",
-"https://files.catbox.moe/mfr80z.mp3",
-"https://files.catbox.moe/6zoirr.mp3",
-"https://files.catbox.moe/nqcdgi.mp3",
-"https://files.catbox.moe/w6mbo9.mp3",
-"https://files.catbox.moe/fvabge.mp3",
-"https://files.catbox.moe/l8gmod.mp3",
-"https://files.catbox.moe/lmqvi3.mp3"
+<div class="topbar">
+<div class="status">⚡ ONLINE</div>
+<div class="brand">BY RAMY</div>
+</div>
+
+<div class="box">
+
+<div class="top">
+<img class="avatar" src="https://xatimg.com/image/RKP5IrStF45l.png">
+<div class="name">RAMY</div>
+</div>
+
+<!-- RADIO -->
+<div class="radio">
+<button class="radio-btn" onclick="playRadio(0)">🎧 قرآن</button>
+<button class="radio-btn" onclick="playRadio(1)">🎶 ميلودي</button>
+<button class="radio-btn" onclick="playRadio(2)">🎤 حماقي</button>
+<button class="radio-btn" onclick="playRadio(3)">🔥 منوعات</button>
+</div>
+
+<div class="radio-box" onclick="toggleRadio()">▶ / ⏸ تشغيل الراديو</div>
+
+<!-- LINKS -->
+<div class="links">
+<a href="https://xat.com/2ra" target="_blank">🔥 2ra Chat</a>
+<a href="https://xat.com/7reqa" target="_blank">⚡ 7reqa Chat</a>
+<a href="https://xat.com/trade" target="_blank">💰 Trade Hub</a>
+<a href="https://xat.com/cambio" target="_blank">🌐 Cambio Zone</a>
+</div>
+
+<!-- SONGS -->
+<div class="wrap">
+<div class="col" id="left"></div>
+<div class="col" id="right"></div>
+</div>
+
+</div>
+</div>
+
+<audio id="radio"></audio>
+<audio id="player"></audio>
+
+<script>
+
+/* LOGIN */
+function check(){
+if(pass.value==="106080"){
+login.style.display="none";
+main.style.display="block";
+}else alert("Wrong Password");
+}
+pass.addEventListener("keydown",e=>{
+if(e.key==="Enter") check();
+});
+
+/* RADIO */
+let radios=[
+"https://stream.radiojar.com/8s5u5tpdtwzuv",
+"https://audio.nrpstream.com/listen/nogoumfm/radio.mp3",
+"https://stream.zeno.fm/w7atxdpk1pdvv",
+"https://stream.zeno.fm/hswv0qwu7vgtv"
 ];
 
-let index = 0;
-radio.src = songs[index];
-radio.volume = 0.7;
+let radio=document.getElementById("radio");
+let isRadio=false;
 
-function playRadio(){
-    radio.play();
+function playRadio(i){
+radio.pause();
+radio.src=radios[i];
+radio.play();
+isRadio=true;
 }
 
-function stopRadio(){
-    radio.pause();
+function toggleRadio(){
+if(!radio.src) radio.src=radios[0];
+
+if(isRadio){
+radio.pause();
+isRadio=false;
+}else{
+radio.play();
+isRadio=true;
+}
 }
 
-// لما الأغنية تخلص يروح للي بعدها
-radio.onended = function(){
-    index++;
-    if(index >= songs.length){
-        index = 0;
-    }
-    radio.src = songs[index];
-    radio.play();
-};
+/* SONGS */
+let songs=[
+["نفسي أطمن بيك","https://j.top4top.io/m_3769le8x51.mp3"],
+["الشعر الأسود","https://k.top4top.io/m_3769enq6z2.mp3"],
+["حبي الأولاني","https://l.top4top.io/m_3769auk3d3.mp3"],
+["كوابيس","https://a.top4top.io/m_3769kdadn4.mp3"],
+["مش تمام","https://b.top4top.io/m_3769kg8sd5.mp3"],
+["مشوار الحب","https://c.top4top.io/m_3769ien0c6.mp3"],
+["صاحبة الجلالة","https://d.top4top.io/m_3769yw3257.mp3"],
+["عملالي عمل","https://e.top4top.io/m_3769yb3k29.mp3"],
+["بحبها","https://f.top4top.io/m_37690zriz10.mp3"],
+["فيكي سر","https://b.top4top.io/m_3769lxi681.mp3"],
+["حياتي قصيدة","https://c.top4top.io/m_3769g0kg52.mp3"],
+["لسه","https://d.top4top.io/m_3769xz8mi3.mp3"],
+["مش زي غيرها","https://e.top4top.io/m_3769o93s34.mp3"],
+["نسند بعض","https://f.top4top.io/m_3769c3tql5.mp3"],
+["وش السعد","https://g.top4top.io/m_3769r7bcu6.mp3"],
+["يا حظ بيه","https://l.top4top.io/m_3769p7dkd1.mp3"],
+["ياللي ناسيني","https://a.top4top.io/m_37697muuj2.mp3"],
+["هلوسة","https://b.top4top.io/m_3769i9yd13.mp3"],
+["قصة حب","https://c.top4top.io/m_3769ou0bt4.mp3"],
+["ذكريات","https://d.top4top.io/m_37697zirj5.mp3"],
+["حبيتك ليه","https://e.top4top.io/m_3769rnmrk6.mp3"],
+["توأمي","https://d.top4top.io/m_3769a1jgw1.mp3"]
+];
+
+let left=document.getElementById("left");
+let right=document.getElementById("right");
+let player=document.getElementById("player");
+
+songs.forEach((s,i)=>{
+let div=document.createElement("div");
+div.className="song";
+div.innerHTML=`
+${s[0]}
+<div>
+<button class="play" onclick="player.src='${s[1]}';player.play()">▶</button>
+<button class="stop" onclick="player.pause()">⏹</button>
+</div>`;
+(i%2?right:left).appendChild(div);
+});
+
 </script>
 
 </body>
 </html>
+
+-----------------------------------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAMY SYSTEM</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#05060a;
+  color:#00f5ff;
+  overflow:hidden;
+}
+
+/* GRID */
+.dashboard{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  grid-template-rows:230px 1fr;
+  height:100vh;
+  gap:6px;
+  padding:6px;
+}
+
+.panel{
+  background:rgba(0,0,0,0.65);
+  border:1px solid #00f5ff22;
+  border-radius:8px;
+  padding:8px;
+  overflow:hidden;
+}
+
+/* HACKER BOX */
+.hacker-box{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.hacker-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:contrast(1.2) brightness(0.8);
+}
+
+.hack-overlay{
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,0.35);
+}
+
+.hack-text{
+  color:#00ff66;
+  font-size:12px;
+  text-align:center;
+  text-shadow:0 0 10px #00ff66;
+  animation:flicker 1.5s infinite;
+}
+
+@keyframes flicker{
+  0%,100%{opacity:1}
+  50%{opacity:0.3}
+}
+
+/* PROFILE */
+.profile{text-align:center;}
+
+.avatar{
+  width:110px;
+  border-radius:50%;
+  border:2px solid #00f5ff;
+}
+
+.name{
+  font-size:26px;
+  text-shadow:0 0 10px #00f5ff;
+}
+
+/* RADIO */
+.radio{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:5px;
+  margin-top:5px;
+}
+
+.radio button{
+  background:#00f5ff;
+  border:none;
+  padding:5px 8px;
+  font-size:11px;
+  cursor:pointer;
+}
+
+/* LINKS */
+.links{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  margin-top:8px;
+}
+
+.links a{
+  color:#00ffcc;
+  text-decoration:none;
+  padding:6px;
+  background:#00f5ff11;
+  border-radius:6px;
+  transition:0.2s;
+}
+
+.links a:hover{
+  transform:scale(1.1);
+  background:#00f5ff33;
+}
+
+/* SONG */
+.song{
+  display:flex;
+  justify-content:space-between;
+  padding:5px;
+  margin:3px 0;
+  background:#00f5ff11;
+  font-size:11px;
+}
+
+.song button{
+  background:#00f5ff;
+  border:none;
+  cursor:pointer;
+  padding:3px 6px;
+}
+
+/* PLAYER */
+.player-mini{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+}
+
+.player-mini button{
+  background:#00f5ff;
+  border:none;
+  padding:5px 10px;
+  cursor:pointer;
+  border-radius:5px;
+}
+
+#title{
+  font-size:12px;
+  text-align:center;
+}
+
+/* SEEK */
+.seek{
+  width:90%;
+  height:5px;
+  background:#111;
+  cursor:pointer;
+  border-radius:5px;
+  overflow:hidden;
+}
+
+#fill{
+  height:100%;
+  width:0%;
+  background:#00ffcc;
+}
+
+/* VOLUME */
+.volume-box{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+.volume-box input{
+  width:120px;
+}
+
+audio{display:none;}
+
+</style>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- 1 -->
+<div class="panel hacker-box">
+  <img src="https://mf.b37mrtl.ru/media/pics/2023.04/article/643e76264c59b716106a1276.PNG">
+  <div class="hack-overlay">
+    <div class="hack-text">
+      BOOTING SYSTEM...<br>
+      RAMY CORE ONLINE<br>
+      ACCESS GRANTED ✔
+    </div>
+  </div>
+</div>
+
+<!-- 2 -->
+<div class="panel hacker-box">
+  <img src="https://img.pikbest.com/wp/202345/hacker-skeleton-working-on-laptop-dark-background_9581815.jpg!w700wp">
+  <div class="hack-overlay">
+    <div class="hack-text">
+      HACK MODE ACTIVE<br>
+      FIREWALL BYPASSED<br>
+      SYSTEM CONTROL ✔
+    </div>
+  </div>
+</div>
+
+<!-- 3 -->
+<div class="panel">LOGIN SYSTEM</div>
+
+<!-- 4 PROFILE + RADIO + VOLUME -->
+<div class="panel profile">
+
+<img class="avatar" src="https://xatimg.com/image/PtMzAMEPdOYG.png">
+<div class="name">RAMY</div>
+
+<div class="radio">
+<button onclick="playRadio(0)">🎧 قرآن</button>
+<button onclick="playRadio(1)">🎶 ميلودي</button>
+<button onclick="playRadio(2)">🎤 حماقي</button>
+<button onclick="playRadio(3)">🔥 منوعات</button>
+</div>
+
+<button onclick="toggleRadio()" style="margin-top:5px;background:#00ffcc;border:none;padding:5px;cursor:pointer;">
+▶ / ⏸ راديو
+</button>
+
+<!-- 🔊 VOLUME CONTROL ADDED -->
+<div style="margin-top:10px;text-align:center;">
+<div style="font-size:12px;margin-bottom:5px;">🔊 التحكم في الصوت</div>
+
+<button onclick="radio.volume=Math.min(radio.volume+0.1,1)" style="padding:5px;margin:2px;background:#00f5ff;border:none;cursor:pointer;">➕ رفع</button>
+
+<button onclick="radio.volume=Math.max(radio.volume-0.1,0)" style="padding:5px;margin:2px;background:#00f5ff;border:none;cursor:pointer;">➖ خفض</button>
+</div>
+
+<div class="links">
+<a href="https://xat.com/2ra" target="_blank">🔥 2ra Chat</a>
+<a href="https://xat.com/7reqa" target="_blank">⚡ 7reqa Chat</a>
+<a href="https://xat.com/trade" target="_blank">💰 Trade Hub</a>
+<a href="https://xat.com/cambio" target="_blank">🌐 Cambio Zone</a>
+</div>
+
+</div>
+
+<!-- 5 -->
+<div class="panel" id="left"></div>
+
+<!-- 6 -->
+<div class="panel" id="right"></div>
+
+</div>
+
+<audio id="audio"></audio>
+<audio id="radio"></audio>
+
+<script>
+
+/* RADIO */
+let radios=[
+"https://stream.radiojar.com/8s5u5tpdtwzuv",
+"https://audio.nrpstream.com/listen/nogoumfm/radio.mp3",
+"https://stream.zeno.fm/w7atxdpk1pdvv",
+"https://stream.zeno.fm/hswv0qwu7vgtv"
+];
+
+let radio=document.getElementById("radio");
+let rstate=false;
+
+function playRadio(i){
+radio.src=radios[i];
+radio.play();
+rstate=true;
+}
+
+function toggleRadio(){
+if(!radio.src) radio.src=radios[0];
+rstate?radio.pause():radio.play();
+rstate=!rstate;
+}
+
+/* SONGS */
+let songs=[
+["نفسي أطمن بيك","https://j.top4top.io/m_3769le8x51.mp3"],
+["الشعر الأسود","https://k.top4top.io/m_3769enq6z2.mp3"],
+["حبي الأولاني","https://l.top4top.io/m_3769auk3d3.mp3"],
+["كوابيس","https://a.top4top.io/m_3769kdadn4.mp3"],
+["مش تمام","https://b.top4top.io/m_3769kg8sd5.mp3"],
+["مشوار الحب","https://c.top4top.io/m_3769ien0c6.mp3"],
+["صاحبة الجلالة","https://d.top4top.io/m_3769yw3257.mp3"],
+["عملالي عمل","https://e.top4top.io/m_3769yb3k29.mp3"],
+["بحبها","https://f.top4top.io/m_37690zriz10.mp3"],
+["فيكي سر","https://b.top4top.io/m_3769lxi681.mp3"],
+["حياتي قصيدة","https://c.top4top.io/m_3769g0kg52.mp3"],
+["لسه","https://d.top4top.io/m_3769xz8mi3.mp3"],
+["مش زي غيرها","https://e.top4top.io/m_3769o93s34.mp3"],
+["نسند بعض","https://f.top4top.io/m_3769c3tql5.mp3"],
+["وش السعد","https://g.top4top.io/m_3769r7bcu6.mp3"],
+["يا حظ بيه","https://l.top4top.io/m_3769p7dkd1.mp3"],
+["ياللي ناسيني","https://a.top4top.io/m_37697muuj2.mp3"],
+["هلوسة","https://b.top4top.io/m_3769i9yd13.mp3"],
+["قصة حب","https://c.top4top.io/m_3769ou0bt4.mp3"],
+["ذكريات","https://d.top4top.io/m_37697zirj5.mp3"],
+["حبيتك ليه","https://e.top4top.io/m_3769rnmrk6.mp3"],
+["توأمي","https://d.top4top.io/m_3769a1jgw1.mp3"]
+];
+
+let audio=document.getElementById("audio");
+let index=0;
+
+let left=document.getElementById("left");
+let right=document.getElementById("right");
+
+/* PLAYER */
+left.innerHTML=`
+<div class="player-mini">
+<div id="title">No Song</div>
+<button onclick="toggle()">▶ / ⏸</button>
+
+<div class="seek" onclick="seek(event)">
+<div id="fill"></div>
+</div>
+</div>
+`;
+
+for(let i=0;i<11;i++){
+left.innerHTML+=`
+<div class="song">
+${songs[i][0]}
+<button onclick="playSong(${i})">▶</button>
+</div>`;
+}
+
+right.innerHTML=`
+<div class="volume-box">
+🔊 الصوت
+<input type="range" min="0" max="1" step="0.1" onchange="volume(this.value)">
+</div>
+`;
+
+for(let i=11;i<songs.length;i++){
+right.innerHTML+=`
+<div class="song">
+${songs[i][0]}
+<button onclick="playSong(${i})">▶</button>
+</div>`;
+}
+
+/* FUNCTIONS */
+function playSong(i){
+audio.src=songs[i][1];
+audio.play();
+index=i;
+document.getElementById("title").innerText=songs[i][0];
+}
+
+function toggle(){
+audio.paused?audio.play():audio.pause();
+}
+
+function volume(v){
+audio.volume=v;
+}
+
+function seek(e){
+let pos=e.offsetX/e.currentTarget.offsetWidth;
+audio.currentTime=pos*audio.duration;
+}
+
+audio.ontimeupdate=function(){
+document.getElementById("fill").style.width=
+(audio.currentTime/audio.duration)*100+"%";
+};
+
+</script>
+
+</body>
+</html>
+
+---------------------------------------------------------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAMY SYSTEM</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:radial-gradient(circle at top,#0a0f1f,#05060a);
+  color:#00f5ff;
+  overflow:hidden;
+}
+
+/* GRID */
+.dashboard{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  grid-template-rows:230px 1fr;
+  height:100vh;
+  gap:6px;
+  padding:6px;
+}
+
+.panel{
+  background:rgba(0,0,0,0.65);
+  border:1px solid #00f5ff22;
+  border-radius:8px;
+  padding:8px;
+  overflow:hidden;
+  transition:0.3s;
+  box-shadow:0 0 15px rgba(0,255,255,0.08);
+}
+
+/* HOVER ZOOM (except name) */
+.panel:hover,
+.song:hover,
+.radio button:hover,
+.links a:hover,
+.player button:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px rgba(0,255,255,0.4);
+}
+
+.glow-name:hover{transform:none!important;}
+
+/* HACKER IMAGE BOX */
+.hacker-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* PROFILE */
+.profile{text-align:center;}
+
+.avatar{
+  width:110px;
+  border-radius:50%;
+  border:2px solid #00f5ff;
+}
+
+.glow-name{
+  font-size:32px;
+  font-weight:bold;
+  color:#00f5ff;
+  animation:pulse 1.5s infinite;
+  text-shadow:0 0 10px #00f5ff,0 0 20px #00f5ff;
+}
+
+@keyframes pulse{
+  0%{opacity:1;transform:scale(1);}
+  50%{opacity:0.4;transform:scale(1.1);}
+  100%{opacity:1;transform:scale(1);}
+}
+
+/* RADIO */
+.radio{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:5px;
+}
+
+.radio button{
+  background:#00f5ff;
+  border:none;
+  padding:5px 8px;
+  font-size:11px;
+  cursor:pointer;
+}
+
+/* LINKS */
+.links{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  margin-top:8px;
+}
+
+.links a{
+  color:#00ffcc;
+  text-decoration:none;
+  padding:6px;
+  background:#00f5ff11;
+  border-radius:6px;
+}
+
+/* SONGS */
+.song{
+  display:flex;
+  justify-content:space-between;
+  padding:5px;
+  margin:3px 0;
+  background:#00f5ff11;
+  font-size:11px;
+}
+
+.song button{
+  background:#00f5ff;
+  border:none;
+  cursor:pointer;
+}
+
+/* LOCK */
+.lock{
+  position:absolute;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.75);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+}
+
+.lock input{
+  padding:8px;
+  text-align:center;
+  background:#111;
+  border:none;
+  color:#00f5ff;
+}
+
+.lock button{
+  padding:6px 10px;
+  background:#00f5ff;
+  border:none;
+  cursor:pointer;
+}
+
+/* PLAYER */
+.player{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+}
+
+.seek{
+  width:90%;
+  height:6px;
+  background:#111;
+  cursor:pointer;
+}
+
+#fill{
+  height:100%;
+  width:0%;
+  background:#00ffcc;
+}
+
+.volume{
+  width:90%;
+}
+
+audio{display:none;}
+
+.hidden{display:none;}
+
+</style>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- 1 -->
+<div class="panel hacker-box">
+<img src="https://mf.b37mrtl.ru/media/pics/2023.04/article/643e76264c59b716106a1276.PNG">
+</div>
+
+<!-- 2 -->
+<div class="panel hacker-box">
+<img src="https://img.pikbest.com/wp/202345/hacker-skeleton-working-on-laptop-dark-background_9581815.jpg!w700wp">
+</div>
+
+<!-- 3 LOCK -->
+<div class="panel hacker-box">
+
+<img src="https://img.pikbest.com/backgrounds/20250126/guarding-your-digital-life-power-of-passwords-smarter-password-practices_11452980.jpg!f305cw">
+
+<div class="lock" id="lock">
+<div>🔐 ENTER PASSWORD</div>
+<input type="password" id="pass">
+<button onclick="check()">UNLOCK</button>
+</div>
+
+</div>
+
+<!-- 4 PROFILE -->
+<div class="panel profile hidden" id="box4">
+
+<img class="avatar" src="https://xatimg.com/image/PtMzAMEPdOYG.png">
+<div class="glow-name">RAMY</div>
+
+<div class="radio">
+<button onclick="playRadio(0)">🎧 قرآن</button>
+<button onclick="playRadio(1)">🎶 ميلودي</button>
+<button onclick="playRadio(2)">🎤 حماقي</button>
+<button onclick="playRadio(3)">🔥 منوعات</button>
+</div>
+
+<button onclick="toggleRadio()" style="margin-top:5px;background:#00ffcc;border:none;padding:5px;cursor:pointer;">
+▶ / ⏸
+</button>
+
+<div style="margin-top:10px;text-align:center;">
+<div style="font-size:12px;">🔊 RADIO VOLUME</div>
+<input type="range" min="0" max="1" step="0.1"
+oninput="radio.volume=this.value" style="width:80%;">
+</div>
+
+<div class="links">
+<a href="https://xat.com/2ra" target="_blank">🔥 2ra Chat</a>
+<a href="https://xat.com/7reqa" target="_blank">⚡ 7reqa Chat</a>
+<a href="https://xat.com/trade" target="_blank">💰 Trade Hub</a>
+<a href="https://xat.com/cambio" target="_blank">🌐 Cambio Zone</a>
+</div>
+
+</div>
+
+<!-- 5 -->
+<div class="panel hidden" id="box5">
+
+<div class="player">
+<div id="title">NO SONG</div>
+<button onclick="toggle()">▶ / ⏸</button>
+
+<div class="seek" onclick="seek(event)">
+<div id="fill"></div>
+</div>
+
+<input class="volume" type="range" min="0" max="1" step="0.1" onchange="audio.volume=this.value">
+
+</div>
+
+<div id="list1"></div>
+
+</div>
+
+<!-- 6 -->
+<div class="panel hidden" id="box6">
+<div id="list2"></div>
+</div>
+
+</div>
+
+<audio id="audio"></audio>
+<audio id="radio"></audio>
+
+<script>
+
+let radio=document.getElementById("radio");
+
+let radios=[
+"https://stream.radiojar.com/8s5u5tpdtwzuv",
+"https://audio.nrpstream.com/listen/nogoumfm/radio.mp3",
+"https://stream.zeno.fm/w7atxdpk1pdvv",
+"https://stream.zeno.fm/hswv0qwu7vgtv"
+];
+
+radio.volume=0.6;
+
+function playRadio(i){
+radio.src=radios[i];
+radio.play();
+}
+
+function toggleRadio(){
+radio.paused?radio.play():radio.pause();
+}
+
+/* SONGS */
+let songs=[
+["نفسي أطمن بيك","https://j.top4top.io/m_3769le8x51.mp3"],
+["الشعر الأسود","https://k.top4top.io/m_3769enq6z2.mp3"],
+["حبي الأولاني","https://l.top4top.io/m_3769auk3d3.mp3"],
+["كوابيس","https://a.top4top.io/m_3769kdadn4.mp3"],
+["مش تمام","https://b.top4top.io/m_3769kg8sd5.mp3"],
+["مشوار الحب","https://c.top4top.io/m_3769ien0c6.mp3"],
+["صاحبة الجلالة","https://d.top4top.io/m_3769yw3257.mp3"],
+["عملالي عمل","https://e.top4top.io/m_3769yb3k29.mp3"],
+["بحبها","https://f.top4top.io/m_37690zriz10.mp3"],
+["فيكي سر","https://b.top4top.io/m_3769lxi681.mp3"],
+["حياتي قصيدة","https://c.top4top.io/m_3769g0kg52.mp3"],
+["لسه","https://d.top4top.io/m_3769xz8mi3.mp3"],
+["مش زي غيرها","https://e.top4top.io/m_3769o93s34.mp3"],
+["نسند بعض","https://f.top4top.io/m_3769c3tql5.mp3"],
+["وش السعد","https://g.top4top.io/m_3769r7bcu6.mp3"],
+["يا حظ بيه","https://l.top4top.io/m_3769p7dkd1.mp3"],
+["ياللي ناسيني","https://a.top4top.io/m_37697muuj2.mp3"],
+["هلوسة","https://b.top4top.io/m_3769i9yd13.mp3"],
+["قصة حب","https://c.top4top.io/m_3769ou0bt4.mp3"],
+["ذكريات","https://d.top4top.io/m_37697zirj5.mp3"],
+["حبيتك ليه","https://e.top4top.io/m_3769rnmrk6.mp3"],
+["توأمي","https://d.top4top.io/m_3769a1jgw1.mp3"]
+];
+
+let audio=document.getElementById("audio");
+let index=0;
+
+let list1=document.getElementById("list1");
+let list2=document.getElementById("list2");
+
+for(let i=0;i<11;i++){
+list1.innerHTML+=`<div class="song">${songs[i][0]} <button onclick="play(${i})">▶</button></div>`;
+}
+
+for(let i=11;i<songs.length;i++){
+list2.innerHTML+=`<div class="song">${songs[i][0]} <button onclick="play(${i})">▶</button></div>`;
+}
+
+function play(i){
+audio.src=songs[i][1];
+audio.play();
+index=i;
+document.getElementById("title").innerText=songs[i][0];
+}
+
+function toggle(){
+audio.paused?audio.play():audio.pause();
+}
+
+function seek(e){
+let pos=e.offsetX/e.currentTarget.offsetWidth;
+audio.currentTime=pos*audio.duration;
+}
+
+audio.ontimeupdate=function(){
+document.getElementById("fill").style.width=
+(audio.currentTime/audio.duration)*100+"%";
+};
+
+function check(){
+if(pass.value==="106080"){
+document.getElementById("lock").style.display="none";
+document.getElementById("box4").classList.remove("hidden");
+document.getElementById("box5").classList.remove("hidden");
+document.getElementById("box6").classList.remove("hidden");
+}else alert("WRONG PASSWORD");
+}
+
+</script>
+
+</body>
+</html>
+ ----------------------------------------------------------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAMY SYSTEM</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:radial-gradient(circle at top,#0a0f1f,#05060a);
+  color:#00f5ff;
+  overflow:hidden;
+}
+
+/* GRID */
+.dashboard{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  grid-template-rows:230px 1fr;
+  height:100vh;
+  gap:6px;
+  padding:6px;
+}
+
+.panel{
+  background:rgba(0,0,0,0.65);
+  border:1px solid #00f5ff22;
+  border-radius:8px;
+  padding:8px;
+  overflow:hidden;
+  transition:0.3s;
+}
+
+/* 🔥 GLOW ON HOVER */
+.panel:hover,
+.song:hover,
+a:hover,
+button:hover{
+  box-shadow:0 0 20px #00f5ff;
+  transform:scale(1.03);
+  color:#00ffff;
+}
+
+/* PROFILE */
+.profile{
+  text-align:center;
+}
+
+.avatar{
+  width:110px;
+  border-radius:50%;
+  border:2px solid #00f5ff;
+}
+
+.glow{
+  text-shadow:0 0 10px #00f5ff,0 0 25px #00ffcc;
+}
+
+/* SONG */
+.song{
+  display:flex;
+  justify-content:space-between;
+  padding:5px;
+  margin:3px 0;
+  background:#00f5ff11;
+  font-size:11px;
+}
+
+/* PLAYER */
+.seek{
+  width:100%;
+  height:6px;
+  background:#111;
+  cursor:pointer;
+}
+
+#fill{
+  height:100%;
+  width:0%;
+  background:#00ffcc;
+}
+
+/* BUTTONS */
+.btn{
+  background:#00f5ff;
+  border:none;
+  padding:6px;
+  margin:3px;
+  cursor:pointer;
+}
+
+/* LINKS */
+.links a{
+  display:flex;
+  justify-content:space-between;
+  padding:6px;
+  margin:4px 0;
+  text-decoration:none;
+  color:#00ffcc;
+  background:#00f5ff11;
+}
+
+/* AUDIO */
+audio{display:none;}
+
+</style>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- 1 PROFILE -->
+<div class="panel profile glow">
+<img class="avatar" src="https://xatimg.com/image/PtMzAMEPdOYG.png">
+<h2>RAMY</h2>
+</div>
+
+<!-- 2 IMAGE -->
+<div class="panel">
+<img src="https://mf.b37mrtl.ru/media/pics/2023.04/article/643e76264c59b716106a1276.PNG"
+style="width:100%;height:100%;object-fit:cover;">
+</div>
+
+<!-- 3 IMAGE -->
+<div class="panel">
+<img src="https://img.pikbest.com/wp/202345/hacker-skeleton-working-on-laptop-dark-background_9581815.jpg!w700wp"
+style="width:100%;height:100%;object-fit:cover;">
+</div>
+
+<!-- 4 RADIO + LINKS -->
+<div class="panel glow">
+
+<h4>📻 RADIO CONTROL</h4>
+
+<button class="btn" onclick="toggleRadio()">▶ / ⏸</button>
+<button class="btn" onclick="radio.volume+=0.1">🔊 +</button>
+<button class="btn" onclick="radio.volume-=0.1">🔉 -</button>
+
+<br>
+
+<div class="links glow">
+<a href="https://xat.com/2ra">2ra Chat ></a>
+<a href="https://xat.com/7reqa">7reqa Chat ></a>
+<a href="https://xat.com/trade">Trade Hub ></a>
+<a href="https://xat.com/cambio">Zone ></a>
+</div>
+
+</div>
+
+<!-- 5 PLAYER -->
+<div class="panel glow">
+<div id="title">NO SONG</div>
+
+<button class="btn" onclick="toggle()">▶ / ⏸</button>
+
+<div class="seek" onclick="seek(event)">
+<div id="fill"></div>
+</div>
+
+<div id="list1"></div>
+</div>
+
+<!-- 6 CONTROL -->
+<div class="panel glow">
+
+<h4>🔊 MASTER CONTROL</h4>
+
+<button class="btn" onclick="audio.play()">▶ ALL</button>
+<button class="btn" onclick="audio.pause()">⏸ STOP</button>
+
+<button class="btn" onclick="audio.volume+=0.1">🔊 UP</button>
+<button class="btn" onclick="audio.volume-=0.1">🔉 DOWN</button>
+
+<div id="list2"></div>
+
+</div>
+
+</div>
+
+<audio id="audio"></audio>
+<audio id="radio"></audio>
+
+<script>
+
+let audio=document.getElementById("audio");
+let radio=document.getElementById("radio");
+
+/* RADIO */
+let radios=[
+"https://stream.radiojar.com/8s5u5tpdtwzuv",
+"https://audio.nrpstream.com/listen/nogoumfm/radio.mp3",
+"https://stream.zeno.fm/w7atxdpk1pdvv",
+"https://stream.zeno.fm/hswv0qwu7vgtv"
+];
+
+function toggleRadio(){
+radio.paused?radio.play():radio.pause();
+}
+
+/* SONGS (UNCHANGED) */
+let songs=[
+["نفسي أطمن بيك","https://j.top4top.io/m_3769le8x51.mp3"],
+["الشعر الأسود","https://k.top4top.io/m_3769enq6z2.mp3"],
+["حبي الأولاني","https://l.top4top.io/m_3769auk3d3.mp3"],
+["كوابيس","https://a.top4top.io/m_3769kdadn4.mp3"],
+["مش تمام","https://b.top4top.io/m_3769kg8sd5.mp3"],
+["مشوار الحب","https://c.top4top.io/m_3769ien0c6.mp3"],
+["صاحبة الجلالة","https://d.top4top.io/m_3769yw3257.mp3"],
+["عملالي عمل","https://e.top4top.io/m_3769yb3k29.mp3"],
+["بحبها","https://f.top4top.io/m_37690zriz10.mp3"],
+["فيكي سر","https://b.top4top.io/m_3769lxi681.mp3"],
+["حياتي قصيدة","https://c.top4top.io/m_3769g0kg52.mp3"],
+["لسه","https://d.top4top.io/m_3769xz8mi3.mp3"],
+["مش زي غيرها","https://e.top4top.io/m_3769o93s34.mp3"],
+["نسند بعض","https://f.top4top.io/m_3769c3tql5.mp3"],
+["وش السعد","https://g.top4top.io/m_3769r7bcu6.mp3"],
+["يا حظ بيه","https://l.top4top.io/m_3769p7dkd1.mp3"],
+["ياللي ناسيني","https://a.top4top.io/m_37697muuj2.mp3"],
+["هلوسة","https://b.top4top.io/m_3769i9yd13.mp3"],
+["قصة حب","https://c.top4top.io/m_3769ou0bt4.mp3"],
+["ذكريات","https://d.top4top.io/m_37697zirj5.mp3"],
+["حبيتك ليه","https://e.top4top.io/m_3769rnmrk6.mp3"],
+["توأمي","https://d.top4top.io/m_3769a1jgw1.mp3"]
+];
+
+songs.forEach((s,i)=>{
+let el=`<div class="song glow">${s[0]} <button onclick="play(${i})">▶</button></div>`;
+if(i<11) list1.innerHTML+=el;
+else list2.innerHTML+=el;
+});
+
+function play(i){
+audio.src=songs[i][1];
+audio.play();
+document.getElementById("title").innerText=songs[i][0];
+}
+
+/* SEEK BAR */
+function seek(e){
+let pos=e.offsetX/e.currentTarget.offsetWidth;
+audio.currentTime=pos*audio.duration;
+}
+
+audio.ontimeupdate=function(){
+document.getElementById("fill").style.width=
+(audio.currentTime/audio.duration)*100+"%";
+};
+
+function toggle(){
+audio.paused?audio.play():audio.pause();
+}
+
+</script>
+
+</body>
+</html>
+
+ 
